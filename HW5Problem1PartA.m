@@ -23,7 +23,7 @@ u(1) = u0;
 
 % Explicit method:
 for j = 1:N
-    u(j+1) = u(j) % + ... Complete this line;
+    u(j+1) = u(j) + h * f(x(j), u(j));
 end
 
 % Compute the exact solution and calculate the relative L2 norm error.
