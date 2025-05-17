@@ -11,7 +11,7 @@ u_exact = @(x) cos(x);
 x0 = 0;       % Starting x value
 xf = 10;      % Ending x value
 u0 = 1;       % Initial condition: u(0) = 1
-h = 0.001;    % Fixed step size
+h = 0.0021;    % Fixed step size
 
 % Determine the number of steps and create the x-grid.
 N = floor((xf - x0) / h);
@@ -23,7 +23,7 @@ u(1) = u0;
 
 % Explicit method:
 for j = 1:N
-    u(j+1) = u(j) % + ... Complete this line;
+    u(j+1) = u(j) + h * f(x(j), u(j));
 end
 
 % Compute the exact solution and calculate the relative L2 norm error.
