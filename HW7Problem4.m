@@ -1,16 +1,16 @@
 % Parameters
 sigma = 10;
 rho   = 28;
-beta  = %Complete This Line.
+beta  = 8 / 3;
 
 % Right-hand side functions
 g1 = @(t, x, y, z) sigma * (y - x);
 g2 = @(t, x, y, z, h) x * (rho - z) - y;
-g3 = @(t, x, y, z, h) % ... ; Complete This Line.
+g3 = @(t, x, y, z, h) x * y - beta * z;
 
 % Time settings
 t0 = 0;
-t_final = 10;
+t_final = 100;
 h = 0.01;
 t = t0:h:t_final;
 N = length(t);
@@ -21,7 +21,7 @@ y = zeros(1, N);
 z = zeros(1, N);
 
 % Initial conditions
-x(1) = %Complete This Line.
+x(1) = 1;
 y(1) = 1;
 z(1) = 1;
 
@@ -35,12 +35,12 @@ for j = 1:N-1
 
     % Stage 2
     k2 = g1(t(j)+ h/2, x(j) + h/2 * k1, y(j) + h/2 * l1, z(j) + h/2 * m1);
-    l2 = %Complete This Line.
-    m2 = %Complete This Line.
+    l2 = g2(t(j) + h/2, x(j) + h/2 * k1, y(j) + h/2 * l1, z(j) + h/2 * m1);
+    m2 = g3(t(j) + h/2, x(j) + h/2 * k1, y(j) + h/2 * l1, z(j) + h/2 * m1);
 
     % Update
-    x(j+1) = %Complete This Line.
-    y(j+1) = %Complete This Line.
+    x(j+1) = x(j) + h * k2;
+    y(j+1) = y(j) + h * l2;
     z(j+1) = z(j) + h * m2;
 end
 
