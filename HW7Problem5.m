@@ -18,5 +18,6 @@ for k = 1:maxIter
 end
 
 % Print the matrix Ak
+disp(eig(A))
 disp(Ak);
 
